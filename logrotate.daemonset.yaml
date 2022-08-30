@@ -1,12 +1,15 @@
 # Originally copied from: https://github.com/kubernetes/kubernetes/tree/master/cluster/saltbase/salt/fluentd-gcp
 # Also see the post: http://blog.kubernetes.io/2015/06/cluster-level-logging-with-kubernetes.html
 
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: logrotate
   namespace: kube-system
 spec:
+  selector:
+    matchLabels:
+      k8s-app: logrotate
   template:
     metadata:
       labels:
